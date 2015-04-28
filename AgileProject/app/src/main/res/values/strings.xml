@@ -3,4 +3,8 @@
 
     <string name="action_settings">Settings</string>
     <string name="android">Pivotal Tracker Connection</string>
+    <string name="txtDisplay">New Text</string>
+    <string name="ptInfoButton">Get Pivotal Tracker information</string>
+    <string name="ptTokenField">Enter your Pivotal Tracker token here</string>
+    <string name="defaultToken">default</string>
 </resources>
