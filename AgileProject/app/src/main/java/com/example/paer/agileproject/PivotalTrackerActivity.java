@@ -15,10 +15,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-public class MainActivity extends Activity {
+public class PivotalTrackerActivity extends Activity {
     // String url ="https://www.pivotaltracker.com/services/v5/projects/1333710/stories/93419454?token=8d97e27f6cad31c7c90febef830bb957";
     String url = "https://www.pivotaltracker.com/services/v5/me?token=";
     String token = "8d97e27f6cad31c7c90febef830bb957";
@@ -27,7 +26,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_pivotal_tracker);
 
         mTextView = (TextView) findViewById(R.id.txtDisplay);
         final Button mButton   = (Button) findViewById(R.id.getJSONButton);
