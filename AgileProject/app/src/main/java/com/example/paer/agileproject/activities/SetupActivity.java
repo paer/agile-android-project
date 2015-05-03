@@ -1,10 +1,13 @@
-package com.example.paer.agileproject;
+package com.example.paer.agileproject.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import com.example.paer.agileproject.R;
 
 /**
  * Created by alex on 03.05.15.
@@ -15,6 +18,15 @@ public class SetupActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup_github);
+
+        Button next = (Button) findViewById(R.id.setup_github_next_button);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SetupActivity.this, GithubActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
