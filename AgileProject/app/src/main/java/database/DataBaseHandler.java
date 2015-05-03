@@ -12,6 +12,9 @@ import database.DBMetaData.User_note;
 
 import java.sql.SQLException;
 
+/**
+ * Created by darwish on 2015-05-03.
+ */
 public class DataBaseHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VESRION = 1;

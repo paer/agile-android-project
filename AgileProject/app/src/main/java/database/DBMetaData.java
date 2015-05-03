@@ -2,7 +2,9 @@ package database;
 
 import android.provider.BaseColumns;
 
-
+/**
+ * Created by Mazen on 5/3/2015.
+ */
 public class DBMetaData {
     public static final String USER_ID = "user_id";
     public static final String DATABASE_NAME = "agile_db";
