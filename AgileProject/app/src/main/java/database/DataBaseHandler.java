@@ -7,8 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import database.DBMetaData.User;
-import database.DBMetaData.User_note;
+import database.DBMetaData.MetaUserNote;
+import database.DBMetaData.MetaUser;
+
+
 
 import java.sql.SQLException;
 
@@ -18,8 +20,12 @@ import java.sql.SQLException;
 public class DataBaseHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VESRION = 1;
-    public String CREATE_USER_TABLE = "CREATE TABLE " + User.USER_TABLE + "(" + DBMetaData.USER_ID + " INTEGER PRIMARY KEY ASC , " + User.USER_NAME + " TEXT," + User.USER_PASSWORD + " TEXT);";
-    public String CREATE_NOTE_TABLE = "CREATE TABLE " + User_note.NOTE_TABLE + "(" + User_note.NOTE_ID + " INTEGER PRIMARY KEY ASC," + DBMetaData.USER_ID + " INTEGER REFERENCES USER(USER_ID) , " + User_note.NOTE_TEXT + " TEXT);";
+    public String CREATE_USER_TABLE = "CREATE TABLE " + MetaUser.USER_TABLE + "(" + DBMetaData.USER_ID + " INTEGER PRIMARY KEY ASC , " + MetaUser.USER_NAME + " TEXT," + MetaUser.USER_PASSWORD + " TEXT);";
+    public String CREATE_NOTE_TABLE = "CREATE TABLE " + MetaUserNote.NOTE_TABLE + "(" + MetaUserNote.NOTE_ID + " INTEGER PRIMARY KEY ASC," + DBMetaData.USER_ID + " INTEGER REFERENCES USER(USER_ID) , " + MetaUserNote.NOTE_TEXT + " TEXT);";
+
+    private Context context;
+    private SQLiteDatabase SQ;
+    private DataBaseHandler handler;
 
 
     public DataBaseHandler(Context context) {
@@ -41,34 +47,62 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     }
 
     public void insertUser(DataBaseHandler dbh, String name, String password) {
-        SQLiteDatabase SQ = dbh.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(User.USER_NAME, name);
-        cv.put(User.USER_PASSWORD, password);
-        long retVal = SQ.insert(User.USER_TABLE, null, cv);
+        cv.put(MetaUser.USER_NAME, name);
+        cv.put(MetaUser.USER_PASSWORD, password);
+        long retVal = SQ.insert(MetaUser.USER_TABLE, null, cv);
         Log.d("Database operations", "A user raw inserted");
     }
 
     public void insertNote(DataBaseHandler dbh, int user_id, String note_text) {
-        SQLiteDatabase SQ = dbh.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(DBMetaData.USER_ID, user_id);
-        cv.put(User_note.NOTE_TEXT, note_text);
-        long retVal = SQ.insert(User_note.NOTE_TABLE, null, cv);
+        cv.put(MetaUserNote.NOTE_TEXT, note_text);
+        long retVal = SQ.insert(MetaUserNote.NOTE_TABLE, null, cv);
         Log.d("Database operations", "A note raw inserted");
     }
 
     public Cursor selectUser(int user_id) throws SQLException {
-        String[] columns = {User.USER_NAME, User.USER_PASSWORD};
-        SQLiteDatabase SQ = this.getWritableDatabase();
-        return SQ.query(User.USER_TABLE, columns, DBMetaData.USER_ID + "=" + user_id, null, null, null, null);
+        String[] columns = {DBMetaData.USER_ID,MetaUser.USER_NAME, MetaUser.USER_PASSWORD};
+        return SQ.query(MetaUser.USER_TABLE, columns, DBMetaData.USER_ID + "=" + user_id, null, null, null, null);
     }
 
     public Cursor selectUserNotes(int user_id) throws SQLException {
-        String[] columns = {User_note.NOTE_ID, User_note.NOTE_TEXT};
-        SQLiteDatabase SQ = this.getWritableDatabase();
-        return SQ.query(User_note.NOTE_TABLE, columns, DBMetaData.USER_ID + "=" + user_id, null, null, null, null);
+        String[] columns = {MetaUserNote.NOTE_ID, MetaUserNote.NOTE_TEXT};
+        return SQ.query(MetaUserNote.NOTE_TABLE, columns, DBMetaData.USER_ID + "=" + user_id, null, null, null, null);
     }
 
+    public boolean updateUser(int user_id, String user_name, String user_pass){
+        ContentValues cv = new ContentValues();
+        cv.put(MetaUser.USER_NAME, user_name);
+        cv.put(MetaUser.USER_PASSWORD, user_pass);
+        return SQ.update(MetaUser.USER_TABLE, cv, DBMetaData.USER_ID + "=" + user_id, null) > 0;
+    }
+
+    public boolean updateUserNote(int note_id, String note_text){
+        ContentValues cv = new ContentValues();
+        cv.put(MetaUserNote.NOTE_TEXT, note_text);
+        return SQ.update(MetaUserNote.NOTE_TABLE, cv, MetaUserNote.NOTE_ID + "=" + note_id, null) > 0;
+    }
+
+    /**
+     * DELETE A RECORD
+     */
+    public boolean deleteNote(int note_id){
+        return SQ.delete(MetaUserNote.NOTE_TABLE, MetaUserNote.NOTE_ID + "=" + note_id, null) > 0;
+    }
+
+    public DataBaseHandler open() throws SQLException{
+        handler = new DataBaseHandler(context);
+        SQ = handler.getWritableDatabase();
+        return this;
+    }
+
+    /**
+     *  CLOSE THE CONNECTION TO THE DB
+     */
+    public void close(){
+        handler.close();
+    }
 
 }

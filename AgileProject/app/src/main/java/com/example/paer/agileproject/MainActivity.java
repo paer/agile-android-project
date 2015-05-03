@@ -22,7 +22,7 @@ public class MainActivity extends ActionBarActivity {
         DataBaseHandler dbh = new DataBaseHandler(this);
         dbh.insertUser(dbh,"Mazen","Rachid");
         dbh.insertNote(dbh, 1, "The first note");
-        dbh.insertNote(dbh,1,"User Notesssssssssssssssssssssss");
+        dbh.insertNote(dbh,1,"MetaUser Notesssssssssssssssssssssss");
         try {
             cur = dbh.selectUserNotes(1);
         } catch (SQLException e) {
