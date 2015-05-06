@@ -32,7 +32,8 @@ public class MainActivity extends ActionBarActivity {
                 R.layout.menu_item, R.id.flContent);
 
         // TODO: Here you add new navigation items
-        dlDrawer.addNavItem("First", "First Fragment", PivotalTrackerFragment.class);
+        dlDrawer.addNavItem("Pivotal tracker", "Pivotal tracker", PivotalTrackerFragment.class);
+        dlDrawer.addNavItem("Poker planning game", "Poker planning game", PokerFragment.class);
 
         // Select default
         if (savedInstanceState == null) {
