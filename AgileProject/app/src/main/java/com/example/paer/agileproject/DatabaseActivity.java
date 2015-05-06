@@ -1,10 +1,6 @@
 package com.example.paer.agileproject;
 
-<<<<<<< HEAD
-import android.content.Intent;
-=======
 import android.database.Cursor;
->>>>>>> origin/master
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,18 +12,13 @@ import java.sql.SQLException;
 import database.DataBaseHandler;
 
 
-public class MainActivity extends ActionBarActivity {
+public class DatabaseActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Cursor cur = null;
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
-        setContentView(R.layout.activity_main);
-        Intent intent = new Intent(this, PokerActivity.class);
-        startActivity(intent);
-=======
-        setContentView(R.layout.activity_pivotal_tracker);
+        setContentView(R.layout.fragment_pivotal_tracker);
         DataBaseHandler dbh = new DataBaseHandler(this);
         try {
             dbh.open(this);
@@ -48,7 +39,6 @@ public class MainActivity extends ActionBarActivity {
             } while (cur.moveToNext());
         }
 
->>>>>>> origin/master
 
     }
 
