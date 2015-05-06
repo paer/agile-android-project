@@ -1,7 +1,10 @@
 package com.example.paer.agileproject;
 
+<<<<<<< HEAD
 import android.content.Intent;
+=======
 import android.database.Cursor;
+>>>>>>> origin/master
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,9 +22,33 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Cursor cur = null;
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_main);
         Intent intent = new Intent(this, PokerActivity.class);
         startActivity(intent);
+=======
+        setContentView(R.layout.activity_pivotal_tracker);
+        DataBaseHandler dbh = new DataBaseHandler(this);
+        try {
+            dbh.open(this);
+            dbh.insertUser(dbh,"Mazen","Rachid");
+            dbh.insertNote(dbh, 1, "The first note");
+            dbh.insertNote(dbh, 1, "MetaUser Notesssssssssssssssssssssss");
+            cur = dbh.selectUserNotes(1);
+            dbh.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+        if (cur.moveToFirst()) {
+            do {
+                Toast.makeText(getBaseContext(),cur.getInt(0)+"  "+cur.getString(1),Toast.LENGTH_LONG).show();
+            } while (cur.moveToNext());
+        }
+
+>>>>>>> origin/master
 
     }
 
