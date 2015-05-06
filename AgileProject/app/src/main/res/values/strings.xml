@@ -7,4 +7,10 @@
     <string name="ptInfoButton">Get Pivotal Tracker information</string>
     <string name="ptTokenField">Enter your Pivotal Tracker token here</string>
     <string name="defaultToken">default</string>
+    <string name="drawer_open">Open menu</string>
+    <string name="drawer_close">Close menu</string>
+
+    <string-array name="menu_items">
+        <item>Pivotal Tracker</item>
+    </string-array>
 </resources>
