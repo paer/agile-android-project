@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/exploded-aar/AgileProject/volley/unspecified/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e4f2f0911668d51d9ebac591632767404c99044e">
+        <dex dex="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/pre-dexed/debug/classes-04309242c4ed19b2ccdd98e40de7144b4c667c0b.jar" />
+    </item>
+    <item
+        jar="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-ff68ad1ac4c648ccbe33c88db371a5b1800425a4.jar" />
+    </item>
+    <item
+        jar="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/pre-dexed/debug/classes-e24833ea04074b1f48dd512fff9177dcf24b066d.jar" />
+    </item>
+    <item
+        jar="/home/paer/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-9efad90e3d9de040f7ba259864d670970b3bc277.jar" />
+    </item>
+    <item
+        jar="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/pre-dexed/debug/classes-10887bc5b59c332f48516e4b15745d049a7ab879.jar" />
+    </item>
+
+</items>
