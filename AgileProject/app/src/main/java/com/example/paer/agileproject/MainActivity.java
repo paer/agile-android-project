@@ -18,7 +18,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Cursor cur = null;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_pivotal_tracker);
         DataBaseHandler dbh = new DataBaseHandler(this);
         try {
             dbh.open(this);
