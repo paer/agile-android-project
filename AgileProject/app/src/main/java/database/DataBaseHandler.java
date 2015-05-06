@@ -92,7 +92,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         return SQ.delete(MetaUserNote.NOTE_TABLE, MetaUserNote.NOTE_ID + "=" + note_id, null) > 0;
     }
 
-    public DataBaseHandler open() throws SQLException{
+    public DataBaseHandler open(Context context) throws SQLException{
         handler = new DataBaseHandler(context);
         SQ = handler.getWritableDatabase();
         return this;

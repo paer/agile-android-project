@@ -20,14 +20,18 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DataBaseHandler dbh = new DataBaseHandler(this);
-        dbh.insertUser(dbh,"Mazen","Rachid");
-        dbh.insertNote(dbh, 1, "The first note");
-        dbh.insertNote(dbh,1,"MetaUser Notesssssssssssssssssssssss");
         try {
+            dbh.open(this);
+            dbh.insertUser(dbh,"Mazen","Rachid");
+            dbh.insertNote(dbh, 1, "The first note");
+            dbh.insertNote(dbh, 1, "MetaUser Notesssssssssssssssssssssss");
             cur = dbh.selectUserNotes(1);
+            dbh.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
 
         if (cur.moveToFirst()) {
             do {
