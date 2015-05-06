@@ -7,6 +7,7 @@
     <string name="ptInfoButton">Get Pivotal Tracker information</string>
     <string name="ptTokenField">Enter your Pivotal Tracker token here</string>
     <string name="defaultToken">default</string>
+    <string name="title_activity_main_activity2">MainActivity2Activity</string>
 
 <string-array name="poker_strings">
         <item>0</item>
