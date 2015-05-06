@@ -101,8 +101,9 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     /**
      *  CLOSE THE CONNECTION TO THE DB
      */
-    public void close(){
-        handler.close();
+    public void close() {
+        if (handler != null)
+            handler.close();
     }
 
 }
