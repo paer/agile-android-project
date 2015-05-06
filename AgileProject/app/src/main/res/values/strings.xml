@@ -13,4 +13,21 @@
     <string-array name="menu_items">
         <item>Pivotal Tracker</item>
     </string-array>
+
+<string-array name="poker_strings">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>5</item>
+        <item>8</item>
+        <item>13</item>
+        <item>21</item>
+        <item>34</item>
+        <item>55</item>
+        <item>89</item>
+        <item>144</item>
+        <item>\?</item>
+        <item>B</item>
+    </string-array>
 </resources>
