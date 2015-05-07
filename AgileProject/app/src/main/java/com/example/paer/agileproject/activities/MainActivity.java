@@ -1,4 +1,4 @@
-package com.example.paer.agileproject;
+package com.example.paer.agileproject.activities;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -8,6 +8,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
+
+import com.example.paer.agileproject.fragments.PivotalTrackerFragment;
+import com.example.paer.agileproject.fragments.PokerFragment;
+import com.example.paer.agileproject.R;
+import com.example.paer.agileproject.FragmentNavigationDrawer;
+import com.example.paer.agileproject.fragments.SetupFragment;
 
 /**
  * @author Marc
@@ -34,6 +40,7 @@ public class MainActivity extends ActionBarActivity {
         // TODO: Here you add new navigation items
         dlDrawer.addNavItem("Pivotal tracker", "Pivotal tracker", PivotalTrackerFragment.class);
         dlDrawer.addNavItem("Poker planning game", "Poker planning game", PokerFragment.class);
+        dlDrawer.addNavItem("Github", "Github", SetupFragment.class);
 
         // Select default
         if (savedInstanceState == null) {

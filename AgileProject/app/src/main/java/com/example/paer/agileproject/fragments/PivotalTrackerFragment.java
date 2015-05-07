@@ -1,4 +1,4 @@
-package com.example.paer.agileproject;
+package com.example.paer.agileproject.fragments;
 
 
 import android.support.annotation.Nullable;
@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.paer.agileproject.R;
 
 public class PivotalTrackerFragment extends Fragment {
     // String url ="https://www.pivotaltracker.com/services/v5/projects/1333710/stories/93419454?token=8d97e27f6cad31c7c90febef830bb957";
