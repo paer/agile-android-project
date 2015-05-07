@@ -1,4 +1,4 @@
-package com.example.paer.agileproject;
+package com.example.paer.agileproject.fragments;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.paer.agileproject.R;
 
 
 public class PokerFragment extends Fragment {

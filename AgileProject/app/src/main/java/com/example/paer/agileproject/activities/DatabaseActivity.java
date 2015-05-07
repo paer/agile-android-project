@@ -1,4 +1,4 @@
-package com.example.paer.agileproject;
+package com.example.paer.agileproject.activities;
 
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.example.paer.agileproject.R;
 
 import java.sql.SQLException;
 
