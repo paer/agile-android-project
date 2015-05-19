@@ -14,6 +14,9 @@ import android.support.v4.app.FragmentTransaction;
 import com.example.paer.agileproject.implementations.GithubAuthenticateAsyncTask;
 import com.example.paer.agileproject.implementations.GithubBranchAsyncTask;
 
+import org.eclipse.egit.github.core.client.GitHubClient;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -27,6 +30,8 @@ public class SetupFragment extends Fragment {
     private String username;
     /** The last successfully authenticated password */
     private String password;
+    /** The client */
+    private GitHubClient githubClient;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,19 +53,10 @@ public class SetupFragment extends Fragment {
                 final String passwordFinal = passwordField.getText().toString();
 
                 new GithubAuthenticateAsyncTask(SetupFragment.this.getActivity()) {
+
                     @Override
-                    protected void onPostExecute(AuthenticationResult authenticationResult) {
-                        super.onPostExecute(authenticationResult);
-
-                        if (authenticationResult == AuthenticationResult.Success) {
-                            // TODO: Store username and password? (they are in class variables)
-                            finish.setEnabled(true);
-                            username = usernameFinal;
-                            password = passwordFinal;
-
-                        } else {
-                            Toast.makeText(SetupFragment.this.getActivity(), "Could not authenticate, please try again", Toast.LENGTH_LONG).show();
-                        }
+                    public void onSuccessfulAuthentication(GitHubClient client) {
+                        githubClient = client;
                     }
                 }.execute(usernameFinal, passwordFinal);
             }
@@ -74,9 +70,9 @@ public class SetupFragment extends Fragment {
                 // TODO: Check if we are allowed to do this yet
                 // TODO: Check that a valid project and branch is selected
 
-                new GithubBranchAsyncTask(SetupFragment.this.getActivity()) {
+                new GithubBranchAsyncTask(SetupFragment.this.getActivity(), githubClient) {
                     @Override
-                    protected void onPostExecute(String[] strings) {
+                    protected void onPostExecute(ArrayList<String> strings) {
                         super.onPostExecute(strings);
 
                         if (strings == null) {
@@ -84,7 +80,7 @@ public class SetupFragment extends Fragment {
                             return;
                         }
 
-                        Log.e("Github Branches", Arrays.toString(strings));
+                        Log.e("Github Branches", "exception");
                     }
                 }.execute();
 

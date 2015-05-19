@@ -13,7 +13,7 @@ import android.os.AsyncTask;
 public abstract class LoadingAsyncTask<Params, Progress, Result> extends AsyncTask<Params, Progress, Result> {
 
     /** Reference to the invoking context */
-    private Context context;
+    protected Context context;
 
     /** Reference to the dialog */
     private ProgressDialog dialog;
