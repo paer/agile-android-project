@@ -4,32 +4,30 @@ import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+import org.eclipse.egit.github.core.client.GitHubClient;
 
 /**
- * Loads all the branches for a certain user
+ * DESC
  *
  * @author Marc
  * @since 2015-05
  */
-public class GithubBranchAsyncTask extends LoadingAsyncTask<Void, Void, String[]> {
+public class GithubProjectAsyncTask extends LoadingAsyncTask<GitHubClient, Void, String[]> {
 
-    private final Spinner branchSpinner;
+    private Spinner projectSpinner;
 
-    public GithubBranchAsyncTask(Context context, Spinner branchSpinner) {
-        super(context, "Loading branches", "Please wait, loading all the branches...");
+    public GithubProjectAsyncTask(Context context, Spinner projectSpinner) {
+        super(context, "Loading projects", "Please wait, loading all the projects...");
 
-        this.branchSpinner = branchSpinner;
+        this.projectSpinner = projectSpinner;
     }
 
-    /**
-     * @return The branches received, null if none
-     */
     @Override
-    protected String[] doInBackground(Void... voids) {
+    protected String[] doInBackground(GitHubClient... gitHubClients) {
         return new String[]{
-                "Branch 1",
-                "Branch 2",
-                "Branch 3"
+                "Project 1",
+                "Project 2",
+                "Project 3"
         };
     }
 
@@ -39,7 +37,7 @@ public class GithubBranchAsyncTask extends LoadingAsyncTask<Void, Void, String[]
 
         if(strings != null) {
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, strings);
-            branchSpinner.setAdapter(adapter);
+            projectSpinner.setAdapter(adapter);
         } else {
             Toast.makeText(context, "Branches received were null", Toast.LENGTH_LONG);
         }
