@@ -56,9 +56,31 @@
         android:id="@+id/setup_github_password_textfield" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Finish"
-        android:id="@+id/setup_github_next_button" />
+        android:text="Authenticate"
+        android:id="@+id/setup_github_authenticate_button" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Project"
+            android:id="@+id/setup_github_project_text"
+            android:layout_marginTop="20dp"/>
+
+    <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/setup_github_project_spinner"
+            android:layout_gravity="center_horizontal" />
+
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Finish"
+            android:id="@+id/setup_github_finish_button"
+            android:layout_gravity="center_horizontal"
+            android:enabled="false" />
 
 </LinearLayout>
