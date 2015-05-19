@@ -73,7 +73,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/setup_github_project_spinner"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:spinnerMode="dropdown"/>
+
+    <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/setup_github_branch_spinner"
+            android:spinnerMode="dropdown"/>
 
     <Button
             android:layout_width="match_parent"
