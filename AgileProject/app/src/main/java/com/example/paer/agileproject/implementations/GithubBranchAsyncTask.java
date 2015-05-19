@@ -12,6 +12,9 @@ import org.eclipse.egit.github.core.service.RepositoryService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 /**
  * Loads all the branches for a certain user
@@ -22,10 +25,13 @@ import java.util.List;
 public class GithubBranchAsyncTask extends LoadingAsyncTask<Void, Void, ArrayList<String>> {
 
     private GitHubClient githubClient;
+    private final Spinner branchSpinner;
 
-    public GithubBranchAsyncTask(Context context, GitHubClient client) {
+    public GithubBranchAsyncTask(Context context, Spinner branchSpinner, GitHubClient client) {
         super(context, "Loading branches", "Please wait, loading all the branches...");
-        githubClient = client;
+
+        this.branchSpinner = branchSpinner;
+        this.githubClient = client;
     }
 
     /**
@@ -48,4 +54,15 @@ public class GithubBranchAsyncTask extends LoadingAsyncTask<Void, Void, ArrayLis
         return branchNames;
     }
 
+    @Override
+    protected void onPostExecute(ArrayList<String> strings) {
+        super.onPostExecute(strings);
+
+        if(strings != null && !strings.isEmpty()) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, strings);
+            branchSpinner.setAdapter(adapter);
+        } else {
+            Toast.makeText(context, "Branches received were null", Toast.LENGTH_LONG);
+        }
+    }
 }

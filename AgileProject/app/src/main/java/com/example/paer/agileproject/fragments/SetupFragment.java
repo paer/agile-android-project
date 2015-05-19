@@ -42,6 +42,7 @@ public class SetupFragment extends Fragment {
         final EditText passwordField = (EditText) view.findViewById(R.id.setup_github_password_textfield);
         final Button authenticate = (Button) view.findViewById(R.id.setup_github_authenticate_button);
         final Spinner projects = (Spinner) view.findViewById(R.id.setup_github_project_spinner);
+        final Spinner branches = (Spinner) view.findViewById(R.id.setup_github_branch_spinner);
         final Button finish = (Button) view.findViewById(R.id.setup_github_finish_button);
         finish.setEnabled(false);
 
@@ -69,28 +70,13 @@ public class SetupFragment extends Fragment {
 
                 // TODO: Check if we are allowed to do this yet
                 // TODO: Check that a valid project and branch is selected
-
-                new GithubBranchAsyncTask(SetupFragment.this.getActivity(), githubClient) {
-                    @Override
-                    protected void onPostExecute(ArrayList<String> strings) {
-                        super.onPostExecute(strings);
-
-                        if (strings == null) {
-                            Toast.makeText(SetupFragment.this.getActivity(), "Could not get branches, please try again", Toast.LENGTH_LONG).show();
-                            return;
-                        }
-
-                        Log.e("Github Branches", "exception");
-                    }
-                }.execute();
-
-            /*
-            GithubFragment newFragment = new GithubFragment();
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.flContent, newFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-            */
+                /*
+                GithubFragment newFragment = new GithubFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.flContent, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                */
             }
         });
 
