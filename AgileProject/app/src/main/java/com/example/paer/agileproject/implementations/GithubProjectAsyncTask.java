@@ -33,17 +33,14 @@ public class GithubProjectAsyncTask extends LoadingAsyncTask<GitHubClient, Void,
     protected ArrayList<String> doInBackground(GitHubClient... gitHubClients) {
         ArrayList<String> projectNames = new ArrayList<String>();
 
-        Log.d("Projects", "asdsa");
-
         try {
             RepositoryService service = new RepositoryService(gitHubClients[0]);
             List<Repository> repos = service.getRepositories();
             for (Repository repo : repos) {
                 projectNames.add(repo.getName());
-                Log.d("Github", repo.getName());
             }
         } catch (Exception e) {
-            Log.e("Github Projects", e.getMessage());
+            Log.e("GithubProjectAsyncTask.doInBackground", e.getMessage());
         }
 
         return projectNames;
@@ -57,7 +54,7 @@ public class GithubProjectAsyncTask extends LoadingAsyncTask<GitHubClient, Void,
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, strings);
             projectSpinner.setAdapter(adapter);
         } else {
-            Toast.makeText(context, "Branches received were null", Toast.LENGTH_LONG);
+            Toast.makeText(context, "No branches received.", Toast.LENGTH_LONG).show();
         }
     }
 }
