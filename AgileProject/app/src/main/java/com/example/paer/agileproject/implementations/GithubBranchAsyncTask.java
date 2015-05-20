@@ -22,7 +22,7 @@ import android.widget.Toast;
  * @author Marc
  * @since 2015-05
  */
-public class GithubBranchAsyncTask extends LoadingAsyncTask<Void, Void, ArrayList<String>> {
+public class GithubBranchAsyncTask extends LoadingAsyncTask<String, Void, ArrayList<String>> {
 
     private GitHubClient githubClient;
     private final Spinner branchSpinner;
@@ -38,17 +38,21 @@ public class GithubBranchAsyncTask extends LoadingAsyncTask<Void, Void, ArrayLis
      * @return The branches received, null if none
      */
     @Override
-    protected ArrayList<String> doInBackground(Void... voids) {
-        ArrayList<String> branchNames = new ArrayList<String>();
+    protected ArrayList<String> doInBackground(String... strings) {
+        if(strings.length != 1)
+            return null;
+        String branchName = strings[0]; // "agile-android-project"
+
+        ArrayList<String> branchNames = new ArrayList<>();
         try {
             RepositoryService repositoryService = new RepositoryService(githubClient);
-            List<RepositoryBranch> branches = repositoryService.getBranches(new RepositoryId("paer", "agile-android-project"));
+            List<RepositoryBranch> branches = repositoryService.getBranches(new RepositoryId("paer", branchName));
             for (RepositoryBranch branch : branches) {
                 branchNames.add(branch.getName());
             }
         }
         catch (Exception e) {
-            Log.e("Github Branches", e.getMessage());
+            Log.e("GithubBranchAsyncTask.doInBackground", e.getMessage());
         }
 
         return branchNames;
@@ -59,10 +63,10 @@ public class GithubBranchAsyncTask extends LoadingAsyncTask<Void, Void, ArrayLis
         super.onPostExecute(strings);
 
         if(strings != null && !strings.isEmpty()) {
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, strings);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, strings);
             branchSpinner.setAdapter(adapter);
         } else {
-            Toast.makeText(context, "Branches received were null", Toast.LENGTH_LONG);
+            Toast.makeText(context, "No branches received.", Toast.LENGTH_LONG).show();
         }
     }
 }
