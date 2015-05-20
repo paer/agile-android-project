@@ -54,7 +54,7 @@ public class GithubProjectAsyncTask extends LoadingAsyncTask<GitHubClient, Void,
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, strings);
             projectSpinner.setAdapter(adapter);
         } else {
-            Toast.makeText(context, "No branches received.", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "No projects received.", Toast.LENGTH_LONG).show();
         }
     }
 }
