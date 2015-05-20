@@ -13,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import com.example.paer.agileproject.implementations.GithubAuthenticateAsyncTask;
 import com.example.paer.agileproject.implementations.GithubBranchAsyncTask;
+import com.example.paer.agileproject.implementations.GithubProjectAsyncTask;
 
 import org.eclipse.egit.github.core.client.GitHubClient;
 
@@ -58,11 +59,28 @@ public class SetupFragment extends Fragment {
                     @Override
                     public void onSuccessfulAuthentication(GitHubClient client) {
                         githubClient = client;
+                        new GithubProjectAsyncTask(SetupFragment.this.getActivity(), projects)
+                                .execute(client);
                     }
                 }.execute(usernameFinal, passwordFinal);
+
             }
         });
 
+        projects.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+
+                new GithubBranchAsyncTask(SetupFragment.this.getActivity(), branches, githubClient)
+                        .execute();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         finish.setOnClickListener(new View.OnClickListener() {
             @Override

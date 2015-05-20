@@ -1,6 +1,10 @@
 package com.example.paer.agileproject.implementations;
 
 import android.content.Context;
+import android.util.Pair;
+import android.widget.Toast;
+
+import org.eclipse.egit.github.core.client.GitHubClient;
 
 /**
  * Authenticates the user against Github
@@ -8,7 +12,7 @@ import android.content.Context;
  * @author Marc
  * @since 2015-05
  */
-public class GithubAuthenticateAsyncTask extends LoadingAsyncTask<String, Void, GithubAuthenticateAsyncTask.AuthenticationResult> {
+public abstract class GithubAuthenticateAsyncTask extends LoadingAsyncTask<String, Void, Pair<GithubAuthenticateAsyncTask.AuthenticationResult, GitHubClient>> {
 
     /**
      * Sets the needed references
@@ -26,15 +30,30 @@ public class GithubAuthenticateAsyncTask extends LoadingAsyncTask<String, Void, 
     }
 
     @Override
-    protected AuthenticationResult doInBackground(String... strings) {
+    protected Pair<AuthenticationResult, GitHubClient> doInBackground(String... strings) {
         if(strings.length != 2) {
-            return AuthenticationResult.MissingInformation;
+            return new Pair(AuthenticationResult.MissingInformation, null);
         }
         String username = strings[0];
         String password = strings[1];
 
-        // TODO: Do authentication here, return AuthenticationResult
+        GitHubClient client = new GitHubClient();
+        client.setUserAgent("agile-android-project");
+        client.setCredentials(username, password);
 
-        return AuthenticationResult.Success;
+        return new Pair(AuthenticationResult.Success, client);
     }
+
+    @Override
+    protected void onPostExecute(Pair<AuthenticationResult, GitHubClient> authenticationResultGitHubClientPair) {
+        super.onPostExecute(authenticationResultGitHubClientPair);
+
+        if (authenticationResultGitHubClientPair.first == AuthenticationResult.Success) {
+            onSuccessfulAuthentication(authenticationResultGitHubClientPair.second);
+        } else {
+            Toast.makeText(context, "Could not authenticate; " + authenticationResultGitHubClientPair.first, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public abstract void onSuccessfulAuthentication(GitHubClient client);
 }

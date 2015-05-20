@@ -1,10 +1,17 @@
 package com.example.paer.agileproject.implementations;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import org.eclipse.egit.github.core.Repository;
 import org.eclipse.egit.github.core.client.GitHubClient;
+import org.eclipse.egit.github.core.service.RepositoryService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * DESC
@@ -12,7 +19,7 @@ import org.eclipse.egit.github.core.client.GitHubClient;
  * @author Marc
  * @since 2015-05
  */
-public class GithubProjectAsyncTask extends LoadingAsyncTask<GitHubClient, Void, String[]> {
+public class GithubProjectAsyncTask extends LoadingAsyncTask<GitHubClient, Void, ArrayList<String>> {
 
     private Spinner projectSpinner;
 
@@ -23,19 +30,30 @@ public class GithubProjectAsyncTask extends LoadingAsyncTask<GitHubClient, Void,
     }
 
     @Override
-    protected String[] doInBackground(GitHubClient... gitHubClients) {
-        return new String[]{
-                "Project 1",
-                "Project 2",
-                "Project 3"
-        };
+    protected ArrayList<String> doInBackground(GitHubClient... gitHubClients) {
+        ArrayList<String> projectNames = new ArrayList<String>();
+
+        Log.d("Projects", "asdsa");
+
+        try {
+            RepositoryService service = new RepositoryService(gitHubClients[0]);
+            List<Repository> repos = service.getRepositories();
+            for (Repository repo : repos) {
+                projectNames.add(repo.getName());
+                Log.d("Github", repo.getName());
+            }
+        } catch (Exception e) {
+            Log.e("Github Projects", e.getMessage());
+        }
+
+        return projectNames;
     }
 
     @Override
-    protected void onPostExecute(String[] strings) {
+    protected void onPostExecute(ArrayList<String> strings) {
         super.onPostExecute(strings);
 
-        if(strings != null) {
+        if(strings != null && !strings.isEmpty()) {
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, strings);
             projectSpinner.setAdapter(adapter);
         } else {
