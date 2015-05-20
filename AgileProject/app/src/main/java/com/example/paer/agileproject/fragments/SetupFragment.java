@@ -69,15 +69,11 @@ public class SetupFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
-
-                new GithubBranchAsyncTask(SetupFragment.this.getActivity(), branches, githubClient)
-                        .execute();
+                new GithubBranchAsyncTask(SetupFragment.this.getActivity(), branches, githubClient).execute(item);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
         finish.setOnClickListener(new View.OnClickListener() {
