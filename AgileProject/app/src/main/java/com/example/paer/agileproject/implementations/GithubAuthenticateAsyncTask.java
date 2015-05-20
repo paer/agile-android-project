@@ -24,34 +24,55 @@ public abstract class GithubAuthenticateAsyncTask extends LoadingAsyncTask<Strin
 
     public enum AuthenticationResult {
         MissingInformation,
-        Success,
-        AuthenticationFailed,
-        ConnectionFailed
+        MissingUsername,
+        MissingPassword,
+        Success
     }
 
     @Override
     protected Pair<AuthenticationResult, GitHubClient> doInBackground(String... strings) {
         if(strings.length != 2) {
-            return new Pair(AuthenticationResult.MissingInformation, null);
+            return new Pair<>(AuthenticationResult.MissingInformation, null);
         }
         String username = strings[0];
         String password = strings[1];
+
+        if(username.isEmpty())
+            return new Pair<>(AuthenticationResult.MissingUsername, null);
+        if(password.isEmpty())
+            return new Pair<>(AuthenticationResult.MissingPassword, null);
 
         GitHubClient client = new GitHubClient();
         client.setUserAgent("agile-android-project");
         client.setCredentials(username, password);
 
-        return new Pair(AuthenticationResult.Success, client);
+        return new Pair<>(AuthenticationResult.Success, client);
     }
 
     @Override
     protected void onPostExecute(Pair<AuthenticationResult, GitHubClient> authenticationResultGitHubClientPair) {
         super.onPostExecute(authenticationResultGitHubClientPair);
 
-        if (authenticationResultGitHubClientPair.first == AuthenticationResult.Success) {
-            onSuccessfulAuthentication(authenticationResultGitHubClientPair.second);
-        } else {
-            Toast.makeText(context, "Could not authenticate; " + authenticationResultGitHubClientPair.first, Toast.LENGTH_LONG).show();
+        AuthenticationResult result = authenticationResultGitHubClientPair.first;
+        GitHubClient client = authenticationResultGitHubClientPair.second;
+
+        switch (result){
+            case MissingInformation:
+                Toast.makeText(context, "Could not authenticate, missing information.", Toast.LENGTH_LONG).show();
+                break;
+            case MissingUsername:
+                Toast.makeText(context, "Could not authenticate, missing username.", Toast.LENGTH_LONG).show();
+                break;
+            case MissingPassword:
+                Toast.makeText(context, "Could not authenticate, missing password.", Toast.LENGTH_LONG).show();
+                break;
+            case Success:
+                if(client == null){
+                    Toast.makeText(context, "Could not authenticate, could not initiate client.", Toast.LENGTH_LONG).show();
+                } else {
+                    onSuccessfulAuthentication(client);
+                }
+                break;
         }
     }
 

@@ -47,7 +47,7 @@ public class SetupFragment extends Fragment {
         final Button finish = (Button) view.findViewById(R.id.setup_github_finish_button);
         finish.setEnabled(false);
 
-        // Set what happens when the authentication has result
+        // Set what happens when the authentication button was pressed
         authenticate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View buttonView) {
@@ -55,12 +55,10 @@ public class SetupFragment extends Fragment {
                 final String passwordFinal = passwordField.getText().toString();
 
                 new GithubAuthenticateAsyncTask(SetupFragment.this.getActivity()) {
-
                     @Override
                     public void onSuccessfulAuthentication(GitHubClient client) {
                         githubClient = client;
-                        new GithubProjectAsyncTask(SetupFragment.this.getActivity(), projects)
-                                .execute(client);
+                        new GithubProjectAsyncTask(SetupFragment.this.getActivity(), projects).execute(client);
                     }
                 }.execute(usernameFinal, passwordFinal);
 
