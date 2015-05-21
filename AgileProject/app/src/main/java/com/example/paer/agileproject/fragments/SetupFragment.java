@@ -1,5 +1,7 @@
 package com.example.paer.agileproject.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import com.example.paer.agileproject.implementations.GithubAuthenticateAsyncTask
 import com.example.paer.agileproject.implementations.GithubBranchAsyncTask;
 import com.example.paer.agileproject.implementations.GithubProjectAsyncTask;
 
+import database.DataBaseHandler;
 import org.eclipse.egit.github.core.client.GitHubClient;
 
 import java.util.ArrayList;
@@ -129,7 +132,14 @@ public class SetupFragment extends Fragment {
             public void onClick(View buttonView) {
                 // If all items selected
                 if(mUsername != null && mPassword != null && mProject != null && mBranch != null){
-                    // TODO: Store information
+                    // Store information
+                    SharedPreferences settings = getActivity().getSharedPreferences("SetupFragment", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = settings.edit();
+                    editor.putString("username", mUsername);
+                    editor.putString("password", mPassword);
+                    editor.putString("project", mProject);
+                    editor.putString("branches", mBranch);
+                    editor.apply();
 
                     GithubFragment newFragment = new GithubFragment();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();

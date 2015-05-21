@@ -1,8 +1,11 @@
 package com.example.paer.agileproject.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,5 +37,18 @@ public class GithubFragment extends Fragment {
         tabsStrip.setViewPager(viewPager);
 
         return view;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // How to get the values set by config
+        // The "Not found" is a default value if they are not set
+        SharedPreferences settings = getActivity().getSharedPreferences("SetupFragment", Context.MODE_PRIVATE);
+        Log.e("username", settings.getString("username", "Not found"));
+        Log.e("password", settings.getString("password", "Not found"));
+        Log.e("project", settings.getString("project", "Not found"));
+        Log.e("branches", settings.getString("branches", "Not found"));
     }
 }
