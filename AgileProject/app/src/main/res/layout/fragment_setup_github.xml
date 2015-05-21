@@ -39,7 +39,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/setup_github_username_textfield" />
+        android:id="@+id/setup_github_username_textfield"
+        android:text=""/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -53,12 +54,42 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/setup_github_password_textfield" />
+        android:id="@+id/setup_github_password_textfield"
+        android:text = ""/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Finish"
-        android:id="@+id/setup_github_next_button" />
+        android:text="Authenticate"
+        android:id="@+id/setup_github_authenticate_button" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Project"
+            android:id="@+id/setup_github_project_text"
+            android:layout_marginTop="20dp"/>
+
+    <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/setup_github_project_spinner"
+            android:layout_gravity="center_horizontal"
+            android:spinnerMode="dropdown"/>
+
+    <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/setup_github_branch_spinner"
+            android:spinnerMode="dropdown"/>
+
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Finish"
+            android:id="@+id/setup_github_finish_button"
+            android:layout_gravity="center_horizontal"
+            android:enabled="false" />
 
 </LinearLayout>
