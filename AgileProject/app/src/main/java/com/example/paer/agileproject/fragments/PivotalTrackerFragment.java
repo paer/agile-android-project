@@ -34,13 +34,14 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.example.paer.agileproject.R;
 import com.example.paer.agileproject.adapters.PivotalFragmentPagerAdapter;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class PivotalTrackerFragment extends Fragment {
     //String url ="https://www.pivotaltracker.com/services/v5/projects/1313008/stories?token="93419454?token=8d97e27f6cad31c7c90febef830bb957";
-    String url = "https://www.pivotaltracker.com/services/v5/me?token=";
+    String url = new String();
     String res;
     //String token = "8d97e27f6cad31c7c90febef830bb957";
     static String token = "64ae3fa63bd077840e44e878dc1c905f";
@@ -80,7 +81,6 @@ public class PivotalTrackerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 token = mText.getText().toString();
-                url = url + mText.getText();
                 displayJsonResponse();
                 lvProject.setAdapter(lvAdapter);
             }
@@ -103,6 +103,8 @@ public class PivotalTrackerFragment extends Fragment {
     }
 
     void displayJsonResponse() {
+        url = "https://www.pivotaltracker.com/services/v5/me?token=";
+        url = url + mText.getText();
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         // Request a JSONObject response from the provided URL.
@@ -117,8 +119,7 @@ public class PivotalTrackerFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(getActivity()) .setTitle("That dosen't work!")
-                                .setMessage(error.toString()).show();
+                        //new AlertDialog.Builder(getActivity()) .setTitle("That dosen't work!").setMessage(error.toString()).show();
                     }
                 });
 // Add the request to the RequestQueue.
@@ -128,6 +129,9 @@ public class PivotalTrackerFragment extends Fragment {
     void search(String str, String match) {
         int i, j, k;
         String comma = ",";
+        listItems.clear();
+        lvAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listItems);
+        lvProject.setAdapter(lvAdapter);
         for(i = 0; i < str.length(); i++){
             if(str.charAt(i) == match.charAt(0)){
                 for(j = 1; j < match.length(); j++){
