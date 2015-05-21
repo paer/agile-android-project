@@ -21,17 +21,14 @@ import java.util.List;
  */
 public class GithubProjectAsyncTask extends LoadingAsyncTask<GitHubClient, Void, ArrayList<String>> {
 
-    private Spinner projectSpinner;
-
-    public GithubProjectAsyncTask(Context context, Spinner projectSpinner) {
+    public GithubProjectAsyncTask(Context context) {
         super(context, "Loading projects", "Please wait, loading all the projects...");
-
-        this.projectSpinner = projectSpinner;
     }
 
     @Override
     protected ArrayList<String> doInBackground(GitHubClient... gitHubClients) {
         ArrayList<String> projectNames = new ArrayList<String>();
+        projectNames.add("Select a project");
 
         try {
             RepositoryService service = new RepositoryService(gitHubClients[0]);
@@ -41,20 +38,9 @@ public class GithubProjectAsyncTask extends LoadingAsyncTask<GitHubClient, Void,
             }
         } catch (Exception e) {
             Log.e("GithubProjectAsyncTask.doInBackground", e.getMessage());
+            return null;
         }
 
         return projectNames;
-    }
-
-    @Override
-    protected void onPostExecute(ArrayList<String> strings) {
-        super.onPostExecute(strings);
-
-        if(strings != null && !strings.isEmpty()) {
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, strings);
-            projectSpinner.setAdapter(adapter);
-        } else {
-            Toast.makeText(context, "No projects received.", Toast.LENGTH_LONG).show();
-        }
     }
 }

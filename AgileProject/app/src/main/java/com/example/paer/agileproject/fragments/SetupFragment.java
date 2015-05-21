@@ -28,9 +28,13 @@ import java.util.Arrays;
 public class SetupFragment extends Fragment {
 
     /** The last successfully authenticated username */
-    private String username;
+    private String mUsername = null;
     /** The last successfully authenticated password */
-    private String password;
+    private String mPassword = null;
+    /** The last chosen project */
+    private String mProject = null;
+    /** The last chosen branch */
+    private String mBranch = null;
     /** The client */
     private GitHubClient githubClient;
 
@@ -42,8 +46,10 @@ public class SetupFragment extends Fragment {
         final EditText usernameField = (EditText) view.findViewById(R.id.setup_github_username_textfield);
         final EditText passwordField = (EditText) view.findViewById(R.id.setup_github_password_textfield);
         final Button authenticate = (Button) view.findViewById(R.id.setup_github_authenticate_button);
-        final Spinner projects = (Spinner) view.findViewById(R.id.setup_github_project_spinner);
-        final Spinner branches = (Spinner) view.findViewById(R.id.setup_github_branch_spinner);
+        final Spinner projectSpinner = (Spinner) view.findViewById(R.id.setup_github_project_spinner);
+        projectSpinner.setEnabled(false);
+        final Spinner branchSpinner = (Spinner) view.findViewById(R.id.setup_github_branch_spinner);
+        branchSpinner.setEnabled(false);
         final Button finish = (Button) view.findViewById(R.id.setup_github_finish_button);
         finish.setEnabled(false);
 
@@ -57,51 +63,86 @@ public class SetupFragment extends Fragment {
                 new GithubAuthenticateAsyncTask(SetupFragment.this.getActivity()) {
                     @Override
                     public void onSuccessfulAuthentication(GitHubClient client) {
+                        mUsername = usernameFinal;
+                        mPassword = passwordFinal;
                         githubClient = client;
-                        new GithubProjectAsyncTask(SetupFragment.this.getActivity(), projects).execute(client);
+                        new GithubProjectAsyncTask(SetupFragment.this.getActivity()){
+                            @Override
+                            protected void onPostExecute(ArrayList<String> strings) {
+                                super.onPostExecute(strings);
+
+                                if(strings != null && !strings.isEmpty()) {
+                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, strings);
+                                    projectSpinner.setAdapter(adapter);
+                                    projectSpinner.setEnabled(true);
+                                } else {
+                                    Toast.makeText(context, "Authentication failed.", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }.execute(client);
                     }
                 }.execute(usernameFinal, passwordFinal);
 
             }
         });
 
-        projects.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        projectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
-                new GithubBranchAsyncTask(SetupFragment.this.getActivity(), branches, githubClient).execute(item);
+                mProject = item;
+                new GithubBranchAsyncTask(SetupFragment.this.getActivity(), githubClient) {
+                    @Override
+                    protected void onPostExecute(ArrayList<String> strings) {
+                        super.onPostExecute(strings);
+
+                        if (strings != null && !strings.isEmpty()) {
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, strings);
+                            branchSpinner.setAdapter(adapter);
+                            branchSpinner.setEnabled(true);
+                        } else {
+                            Toast.makeText(context, "No branches received.", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }.execute(item);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        branchSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mBranch = parent.getItemAtPosition(position).toString();
+                finish.setEnabled(true);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
         });
 
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View buttonView) {
+                // If all items selected
+                if(mUsername != null && mPassword != null && mProject != null && mBranch != null){
+                    // TODO: Store information
 
-                // TODO: Check if we are allowed to do this yet
-                // TODO: Check that a valid project and branch is selected
-                /*
-                GithubFragment newFragment = new GithubFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.flContent, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-                */
+                    GithubFragment newFragment = new GithubFragment();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.flContent, newFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
             }
         });
 
         return view;
     }
 
-/*    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

@@ -25,12 +25,9 @@ import android.widget.Toast;
 public class GithubBranchAsyncTask extends LoadingAsyncTask<String, Void, ArrayList<String>> {
 
     private GitHubClient githubClient;
-    private final Spinner branchSpinner;
 
-    public GithubBranchAsyncTask(Context context, Spinner branchSpinner, GitHubClient client) {
+    public GithubBranchAsyncTask(Context context, GitHubClient client) {
         super(context, "Loading branches", "Please wait, loading all the branches...");
-
-        this.branchSpinner = branchSpinner;
         this.githubClient = client;
     }
 
@@ -44,6 +41,7 @@ public class GithubBranchAsyncTask extends LoadingAsyncTask<String, Void, ArrayL
         String branchName = strings[0]; // "agile-android-project"
 
         ArrayList<String> branchNames = new ArrayList<>();
+        branchNames.add("Select a branch");
         try {
             RepositoryService repositoryService = new RepositoryService(githubClient);
             List<RepositoryBranch> branches = repositoryService.getBranches(new RepositoryId("paer", branchName));
@@ -56,17 +54,5 @@ public class GithubBranchAsyncTask extends LoadingAsyncTask<String, Void, ArrayL
         }
 
         return branchNames;
-    }
-
-    @Override
-    protected void onPostExecute(ArrayList<String> strings) {
-        super.onPostExecute(strings);
-
-        if(strings != null && !strings.isEmpty()) {
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, strings);
-            branchSpinner.setAdapter(adapter);
-        } else {
-            Toast.makeText(context, "No branches received.", Toast.LENGTH_LONG).show();
-        }
     }
 }
