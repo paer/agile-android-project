@@ -50,7 +50,7 @@ public class GithubBranchAsyncTask extends LoadingAsyncTask<String, Void, ArrayL
             }
         }
         catch (Exception e) {
-            Log.e("GithubBranchAsyncTask.doInBackground", e.getMessage());
+            Log.e("doInBackground", e.getMessage());
         }
 
         return branchNames;

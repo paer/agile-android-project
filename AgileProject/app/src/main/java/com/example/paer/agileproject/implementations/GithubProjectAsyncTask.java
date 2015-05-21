@@ -37,7 +37,7 @@ public class GithubProjectAsyncTask extends LoadingAsyncTask<GitHubClient, Void,
                 projectNames.add(repo.getName());
             }
         } catch (Exception e) {
-            Log.e("GithubProjectAsyncTask.doInBackground", e.getMessage());
+            Log.e("GithubProjectAsyncTask", e.getMessage());
             return null;
         }
 

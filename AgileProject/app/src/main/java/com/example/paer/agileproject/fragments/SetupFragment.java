@@ -138,7 +138,7 @@ public class SetupFragment extends Fragment {
                     editor.putString("username", mUsername);
                     editor.putString("password", mPassword);
                     editor.putString("project", mProject);
-                    editor.putString("branches", mBranch);
+                    editor.putString("branch", mBranch);
                     editor.apply();
 
                     GithubFragment newFragment = new GithubFragment();

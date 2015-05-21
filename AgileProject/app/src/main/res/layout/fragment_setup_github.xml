@@ -39,7 +39,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/setup_github_username_textfield" />
+        android:id="@+id/setup_github_username_textfield"
+        android:text=""/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -53,7 +54,8 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/setup_github_password_textfield" />
+        android:id="@+id/setup_github_password_textfield"
+        android:text = ""/>
 
     <Button
         android:layout_width="match_parent"
