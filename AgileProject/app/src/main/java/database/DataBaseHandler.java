@@ -72,6 +72,11 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         return SQ.query(MetaUserNote.NOTE_TABLE, columns, DBMetaData.USER_ID + "=" + user_id, null, null, null, null);
     }
 
+    public Cursor selectUserNotesText(int user_id) throws SQLException {
+        String[] columns = {MetaUserNote.NOTE_TEXT+" as _id",MetaUserNote.NOTE_TEXT};
+        return SQ.query(MetaUserNote.NOTE_TABLE, columns, DBMetaData.USER_ID + "=" + user_id, null, null, null, null);
+    }
+
     public boolean updateUser(int user_id, String user_name, String user_pass){
         ContentValues cv = new ContentValues();
         cv.put(MetaUser.USER_NAME, user_name);

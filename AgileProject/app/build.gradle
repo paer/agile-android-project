@@ -6,6 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.paer.agileproject"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
         minSdkVersion 19
         targetSdkVersion 21
         versionCode 1
@@ -23,4 +24,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.mcxiaoke.volley:library-aar:1.0.0'
+    testCompile 'junit:junit:4.12'
 }
