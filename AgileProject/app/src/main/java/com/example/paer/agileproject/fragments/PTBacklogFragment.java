@@ -2,6 +2,7 @@ package com.example.paer.agileproject.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +35,11 @@ public class PTBacklogFragment extends Fragment {
     }
 
     void displayList(){
+        Log.d("Debug","Here?");
+        backlogItems.add("hello1");
         for(int i = 0; i < PivotalTrackerFragment.storylist.size(); i++)
         {
+            backlogItems.add("hello");
             if ( PivotalTrackerFragment.storylist.get(i).getCurrentState().equals("started") )
                 backlogItems.add(PivotalTrackerFragment.storylist.get(i).getName());
         }

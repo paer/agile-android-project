@@ -2,95 +2,60 @@
 <items version="2" >
 
     <item
-        jar="D:\CTH\Period 4\agile-android-project\AgileProject\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="D:\CTH\Period 4\agile-android-project\AgileProject\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-d387e267580e6ff3b6589b322d9cb798353fb597.jar" />
-    </item>
-    <item
-        jar="D:\CTH\Period 4\Agile development processes\agile-android-project\AgileProject\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="D:\CTH\Period 4\Agile development processes\agile-android-project\AgileProject\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-d5995133ff0c5d7182fcf4782ce2b37ffb45da01.jar" />
-    </item>
-    <item
-        jar="D:\CTH\Period 4\agile-android-project\AgileProject\app\build\intermediates\exploded-aar\com.mcxiaoke.volley\library-aar\1.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="e40b9a81989bd4a846018551c280f8c4d837bf2e">
-        <dex dex="D:\CTH\Period 4\agile-android-project\AgileProject\app\build\intermediates\pre-dexed\debug\classes-0177d60a55461b041339763f0c4246c2711964c5.jar" />
-    </item>
-    <item
-        jar="D:\CTH\Period 4\agile-android-project\AgileProject\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="D:\CTH\Period 4\agile-android-project\AgileProject\app\build\intermediates\pre-dexed\debug\classes-844083ac90d104c18e49886d33332f1ce13cb4d7.jar" />
-    </item>
-    <item
-        jar="C:\Users\Qi\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.2.2\1f96456ca233dec780aa224bff076d8e8bca3908\gson-2.2.2.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="1f96456ca233dec780aa224bff076d8e8bca3908">
-        <dex dex="D:\CTH\Period 4\agile-android-project\AgileProject\app\build\intermediates\pre-dexed\debug\gson-2.2.2-4553705046eea871fd63d073a27910f45a0bb4b6.jar" />
-    </item>
-    <item
-        jar="D:\CTH\Period 4\Agile development processes\agile-android-project\AgileProject\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="D:\CTH\Period 4\Agile development processes\agile-android-project\AgileProject\app\build\intermediates\pre-dexed\debug\classes-350b73ad2833833b3e1a3893f4c1af8f7df0c629.jar" />
-    </item>
-    <item
-        jar="C:\Users\Qi\AppData\Local\Android\sdk1\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="D:\CTH\Period 4\agile-android-project\AgileProject\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-10d1fd47a2ec01c6fec06d5c3e1ea1a623e64894.jar" />
-    </item>
-    <item
-        jar="D:\CTH\Period 4\Agile development processes\agile-android-project\AgileProject\app\build\intermediates\exploded-aar\com.mcxiaoke.volley\library-aar\1.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="e40b9a81989bd4a846018551c280f8c4d837bf2e">
-        <dex dex="D:\CTH\Period 4\Agile development processes\agile-android-project\AgileProject\app\build\intermediates\pre-dexed\debug\classes-ef10e532a139ca7eb1b7304601ca7cb8fc41a6cf.jar" />
-    </item>
-    <item
-        jar="C:\Users\Qi\.gradle\caches\modules-2\files-2.1\org.eclipse.mylyn.github\org.eclipse.egit.github.core\2.1.5\e1c010e279ff0355a996f00b71512a8636e681d7\org.eclipse.egit.github.core-2.1.5.jar"
+        jar="/home/paer/.gradle/caches/modules-2/files-2.1/org.eclipse.mylyn.github/org.eclipse.egit.github.core/2.1.5/e1c010e279ff0355a996f00b71512a8636e681d7/org.eclipse.egit.github.core-2.1.5.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="e1c010e279ff0355a996f00b71512a8636e681d7">
-        <dex dex="D:\CTH\Period 4\agile-android-project\AgileProject\app\build\intermediates\pre-dexed\debug\org.eclipse.egit.github.core-2.1.5-1cb7e411e3d5e1d55fd49ab26a5c648516e52ed7.jar" />
+        <dex dex="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/pre-dexed/debug/org.eclipse.egit.github.core-2.1.5-4aed747a809f47da66e9058264db4c5680dbd401.jar" />
     </item>
     <item
-        jar="D:\CTH\Period 4\agile-android-project\AgileProject\app\build\intermediates\exploded-aar\com.astuetz\pagerslidingtabstrip\1.0.1\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="7912610ed96381c25c36d986eba422731b9641b6">
-        <dex dex="D:\CTH\Period 4\agile-android-project\AgileProject\app\build\intermediates\pre-dexed\debug\classes-54e1b1424a34dfaa16c53bed9970022feb5d78a9.jar" />
-    </item>
-    <item
-        jar="D:\CTH\Period 4\Agile development processes\agile-android-project\AgileProject\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="D:\CTH\Period 4\Agile development processes\agile-android-project\AgileProject\app\build\intermediates\pre-dexed\debug\classes-56c99a4690ebdc2cb7cc8d4ba7549581a9d753cb.jar" />
-    </item>
-    <item
-        jar="D:\CTH\Period 4\Agile development processes\agile-android-project\AgileProject\app\build\intermediates\exploded-aar\com.astuetz\pagerslidingtabstrip\1.0.1\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="7912610ed96381c25c36d986eba422731b9641b6">
-        <dex dex="D:\CTH\Period 4\Agile development processes\agile-android-project\AgileProject\app\build\intermediates\pre-dexed\debug\classes-c887b733dc09dc40ef89afa5fa411b68ab59d2b3.jar" />
-    </item>
-    <item
-        jar="D:\CTH\Period 4\agile-android-project\AgileProject\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
+        jar="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="D:\CTH\Period 4\agile-android-project\AgileProject\app\build\intermediates\pre-dexed\debug\classes-c9db73f4fe34f42d4f2896dfacfb38756525dd94.jar" />
+        <dex dex="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/pre-dexed/debug/classes-10887bc5b59c332f48516e4b15745d049a7ab879.jar" />
+    </item>
+    <item
+        jar="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-ff68ad1ac4c648ccbe33c88db371a5b1800425a4.jar" />
+    </item>
+    <item
+        jar="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/pre-dexed/debug/classes-e24833ea04074b1f48dd512fff9177dcf24b066d.jar" />
+    </item>
+    <item
+        jar="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/exploded-aar/com.mcxiaoke.volley/library-aar/1.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e40b9a81989bd4a846018551c280f8c4d837bf2e">
+        <dex dex="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/pre-dexed/debug/classes-304f95129c23392177823d04bd14b3c7dc340923.jar" />
+    </item>
+    <item
+        jar="/home/paer/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.2/1f96456ca233dec780aa224bff076d8e8bca3908/gson-2.2.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1f96456ca233dec780aa224bff076d8e8bca3908">
+        <dex dex="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/pre-dexed/debug/gson-2.2.2-e8a3ab4e67211c1717e0aeb9f21702ee55e9777b.jar" />
+    </item>
+    <item
+        jar="/home/paer/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-9efad90e3d9de040f7ba259864d670970b3bc277.jar" />
+    </item>
+    <item
+        jar="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/exploded-aar/com.astuetz/pagerslidingtabstrip/1.0.1/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="7912610ed96381c25c36d986eba422731b9641b6">
+        <dex dex="/home/paer/Repos/Agile/agile-android-project/AgileProject/app/build/intermediates/pre-dexed/debug/classes-1a6400dc12c7949f83bd1200de43d20c18c616c6.jar" />
     </item>
 
 </items>
