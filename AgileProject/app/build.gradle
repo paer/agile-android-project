@@ -6,6 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.paer.agileproject"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
         minSdkVersion 19
         targetSdkVersion 21
         versionCode 1
