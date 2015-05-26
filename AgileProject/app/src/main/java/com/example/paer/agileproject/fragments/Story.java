@@ -144,8 +144,7 @@ public class Story {
     public String toString (){
         String ret = " Id: " + this.id + "\n Name: " +this.name+ "\n Create at: " + this.createAt +
                 "\n Update at: " + this.updateAt + "\n Estimate: " + this.estimate + "\n Story type: "
-                + this.storyType+ "\n Current state: " + this.currentState + "\n Kind: " + this.kind +
-                "\n Description: " + this.description;
+                + this.storyType+ "\n Current state: " + this.currentState + "\n Kind: " + this.kind;
         return ret;
     }
 }

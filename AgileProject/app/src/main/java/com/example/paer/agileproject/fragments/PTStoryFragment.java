@@ -1,6 +1,5 @@
 package com.example.paer.agileproject.fragments;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -22,11 +21,12 @@ public class PTStoryFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         View view = inflater.inflate(R.layout.fragment_pivotal_tab, container, false);
-
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.pivotal_viewpager);
         viewPager.setAdapter(new PivotalFragmentPagerAdapter(getFragmentManager()));
         PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip) view.findViewById(R.id.pivotal_tab);
         tabsStrip.setViewPager(viewPager);
+
         return view;
+
     }
 }
