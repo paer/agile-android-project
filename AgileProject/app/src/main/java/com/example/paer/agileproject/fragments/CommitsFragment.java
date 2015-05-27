@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.paer.agileproject.GithubProject;
 import com.example.paer.agileproject.GithubProjectInfoBundle;
 import com.example.paer.agileproject.R;
 import com.example.paer.agileproject.implementations.GithubInfoAsyncTask;
@@ -28,6 +30,27 @@ import java.text.SimpleDateFormat;
  * @since 2015-05
  */
 public class CommitsFragment extends Fragment {
+    private GitHubClient client;
+    private String username;
+    private String password;
+    private String project;
+    private String branch;
+    private String owner;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        SharedPreferences shared = getActivity().getSharedPreferences("SetupFragment", Context.MODE_PRIVATE);
+        this.username = (shared.getString("username", ""));
+        this.password = (shared.getString("password", ""));
+        this.project = (shared.getString("project", ""));
+        this.owner = (shared.getString("owner", ""));
+        this.branch = (shared.getString("branch", ""));
+
+        this.client = new GitHubClient();
+        this.client.setUserAgent("agile-android-project");
+        this.client.setCredentials(username, password);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
         SharedPreferences shared = getActivity().getSharedPreferences("SetupFragment", Context.MODE_PRIVATE);
@@ -61,7 +84,7 @@ public class CommitsFragment extends Fragment {
                         commitsList.addView(commitLayout);
                     }
                 }
-            }.execute(client);
+            }.execute(new Pair(client, new GithubProject(project, owner)));
         }
 
         return view;

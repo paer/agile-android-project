@@ -5,12 +5,14 @@ import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.paer.agileproject.GithubProject;
 import com.example.paer.agileproject.GithubProjectInfoBundle;
 import com.example.paer.agileproject.R;
 import com.example.paer.agileproject.implementations.GithubInfoAsyncTask;
@@ -34,6 +36,7 @@ public class ProjectInfoFragment extends Fragment {
     private String password;
     private String project;
     private String branch;
+    private String owner;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class ProjectInfoFragment extends Fragment {
         this.username = (shared.getString("username", ""));
         this.password = (shared.getString("password", ""));
         this.project = (shared.getString("project", ""));
+        this.owner = (shared.getString("owner", ""));
         this.branch = (shared.getString("branch", ""));
 
         this.client = new GitHubClient();
@@ -80,7 +84,7 @@ public class ProjectInfoFragment extends Fragment {
                         branchListView.addView(branchText);
                     }
                 }
-            }.execute(client);
+            }.execute(new Pair(client, new GithubProject(project, owner)));
         }
 
         return view;

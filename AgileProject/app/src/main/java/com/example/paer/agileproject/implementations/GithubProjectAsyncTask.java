@@ -6,6 +6,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.paer.agileproject.GithubProject;
+
 import org.eclipse.egit.github.core.Repository;
 import org.eclipse.egit.github.core.client.GitHubClient;
 import org.eclipse.egit.github.core.service.RepositoryService;
@@ -19,22 +21,22 @@ import java.util.List;
  * @author Marc
  * @since 2015-05
  */
-public class GithubProjectAsyncTask extends LoadingAsyncTask<GitHubClient, Void, ArrayList<String>> {
+public class GithubProjectAsyncTask extends LoadingAsyncTask<GitHubClient, Void, ArrayList<GithubProject>> {
 
     public GithubProjectAsyncTask(Context context) {
         super(context, "Loading projects", "Please wait, loading all the projects...");
     }
 
     @Override
-    protected ArrayList<String> doInBackground(GitHubClient... gitHubClients) {
-        ArrayList<String> projectNames = new ArrayList<String>();
-        projectNames.add("Select a project");
+    protected ArrayList<GithubProject> doInBackground(GitHubClient... gitHubClients) {
+        ArrayList<GithubProject> projectNames = new ArrayList<GithubProject>();
+        projectNames.add(new GithubProject("Select a project", ""));
 
         try {
             RepositoryService service = new RepositoryService(gitHubClients[0]);
             List<Repository> repos = service.getRepositories();
             for (Repository repo : repos) {
-                projectNames.add(repo.getName());
+                projectNames.add(new GithubProject(repo.getName(), repo.getOwner().getLogin()));
             }
         } catch (Exception e) {
             Log.e("GithubProjectAsyncTask", e.getMessage());

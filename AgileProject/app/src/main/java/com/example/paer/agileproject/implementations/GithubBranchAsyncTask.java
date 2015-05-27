@@ -16,13 +16,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.paer.agileproject.GithubProject;
+
 /**
  * Loads all the branches for a certain user
  *
  * @author Marc
  * @since 2015-05
  */
-public class GithubBranchAsyncTask extends LoadingAsyncTask<String, Void, ArrayList<String>> {
+public class GithubBranchAsyncTask extends LoadingAsyncTask<GithubProject, Void, ArrayList<String>> {
 
     private GitHubClient githubClient;
 
@@ -35,16 +37,17 @@ public class GithubBranchAsyncTask extends LoadingAsyncTask<String, Void, ArrayL
      * @return The branches received, null if none
      */
     @Override
-    protected ArrayList<String> doInBackground(String... strings) {
-        if(strings.length != 1)
+    protected ArrayList<String> doInBackground(GithubProject... projects) {
+        if(projects.length != 1)
             return null;
-        String branchName = strings[0]; // "agile-android-project"
+        String projectName = projects[0].getName(); // "agile-android-project"
+        String projectOwner = projects[0].getOwner();
 
         ArrayList<String> branchNames = new ArrayList<>();
         branchNames.add("Select a branch");
         try {
             RepositoryService repositoryService = new RepositoryService(githubClient);
-            List<RepositoryBranch> branches = repositoryService.getBranches(new RepositoryId("paer", branchName));
+            List<RepositoryBranch> branches = repositoryService.getBranches(new RepositoryId(projectOwner, projectName));
             for (RepositoryBranch branch : branches) {
                 branchNames.add(branch.getName());
             }

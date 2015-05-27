@@ -2,7 +2,9 @@ package com.example.paer.agileproject.implementations;
 
 import android.content.Context;
 import android.util.Log;
+import android.util.Pair;
 
+import com.example.paer.agileproject.GithubProject;
 import com.example.paer.agileproject.GithubProjectInfoBundle;
 
 import org.eclipse.egit.github.core.Issue;
@@ -22,21 +24,22 @@ import java.util.List;
 /**
  * Created by alex on 21.05.15.
  */
-public class GithubInfoAsyncTask extends LoadingAsyncTask<GitHubClient, Void, GithubProjectInfoBundle> {
+public class GithubInfoAsyncTask extends LoadingAsyncTask<Pair<GitHubClient, GithubProject>, Void, GithubProjectInfoBundle> {
 
     public GithubInfoAsyncTask(Context context) {
         super(context, "Loading data", "Please wait, loading all data...");
     }
 
     @Override
-    protected GithubProjectInfoBundle doInBackground(GitHubClient... gitHubClients) {
+    protected GithubProjectInfoBundle doInBackground(Pair<GitHubClient, GithubProject>... githubPair) {
         GithubProjectInfoBundle bundle = new GithubProjectInfoBundle();
-        GitHubClient client = gitHubClients[0];
+        GitHubClient client = githubPair[0].first;
+        GithubProject project = githubPair[0].second;
         try {
             RepositoryService repositoryService = new RepositoryService(client);
             CommitService commitService = new CommitService(client);
             IssueService issueService = new IssueService(client);
-            RepositoryId repo = RepositoryId.create("paer", "agile-android-project"); // TODO: fix this
+            RepositoryId repo = RepositoryId.create(project.getOwner(), project.getName());
             PageIterator<RepositoryCommit> commits = commitService.pageCommits(repo);
 
             for (Collection<RepositoryCommit> page : commits) {

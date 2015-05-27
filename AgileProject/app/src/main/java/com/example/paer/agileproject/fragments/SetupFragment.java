@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+
+import com.example.paer.agileproject.GithubProject;
 import com.example.paer.agileproject.R;
 
 import android.support.v4.app.Fragment;
@@ -40,6 +42,8 @@ public class SetupFragment extends Fragment {
     private String mBranch = null;
     /** The client */
     private GitHubClient githubClient;
+    /** The owner of the project */
+    private String mOwner = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -71,11 +75,11 @@ public class SetupFragment extends Fragment {
                         githubClient = client;
                         new GithubProjectAsyncTask(SetupFragment.this.getActivity()){
                             @Override
-                            protected void onPostExecute(ArrayList<String> strings) {
-                                super.onPostExecute(strings);
+                            protected void onPostExecute(ArrayList<GithubProject> projects) {
+                                super.onPostExecute(projects);
 
-                                if(strings != null && !strings.isEmpty()) {
-                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, strings);
+                                if(projects != null && !projects.isEmpty()) {
+                                    ArrayAdapter<GithubProject> adapter = new ArrayAdapter<GithubProject>(context, android.R.layout.simple_spinner_item, projects);
                                     projectSpinner.setAdapter(adapter);
                                     projectSpinner.setEnabled(true);
                                 } else {
@@ -92,8 +96,9 @@ public class SetupFragment extends Fragment {
         projectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = parent.getItemAtPosition(position).toString();
-                mProject = item;
+                GithubProject item = (GithubProject)parent.getItemAtPosition(position);
+                mProject = item.getName();
+                mOwner = item.getOwner();
                 new GithubBranchAsyncTask(SetupFragment.this.getActivity(), githubClient) {
                     @Override
                     protected void onPostExecute(ArrayList<String> strings) {
@@ -139,6 +144,7 @@ public class SetupFragment extends Fragment {
                     editor.putString("password", mPassword);
                     editor.putString("project", mProject);
                     editor.putString("branch", mBranch);
+                    editor.putString("owner", mOwner);
                     editor.apply();
 
                     GithubFragment newFragment = new GithubFragment();
