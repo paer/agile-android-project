@@ -30,7 +30,7 @@ import java.text.SimpleDateFormat;
 public class IssuesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
-        SharedPreferences shared = getActivity().getSharedPreferences("SetupFragment", Context.MODE_PRIVATE);
+        SharedPreferences shared = getActivity().getSharedPreferences("SetupActivity", Context.MODE_PRIVATE);
         GitHubClient client = new GitHubClient();
         client.setUserAgent("agile-android-project");
         client.setCredentials(shared.getString("username", ""), shared.getString("password", ""));

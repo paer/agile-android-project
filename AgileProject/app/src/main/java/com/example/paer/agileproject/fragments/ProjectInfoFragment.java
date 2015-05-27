@@ -39,7 +39,7 @@ public class ProjectInfoFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences shared = getActivity().getSharedPreferences("SetupFragment", Context.MODE_PRIVATE);
+        SharedPreferences shared = getActivity().getSharedPreferences("SetupActivity", Context.MODE_PRIVATE);
         this.username = (shared.getString("username", ""));
         this.password = (shared.getString("password", ""));
         this.project = (shared.getString("project", ""));

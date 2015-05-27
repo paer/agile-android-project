@@ -1,16 +1,13 @@
 package com.example.paer.agileproject.fragments;
 
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.*;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.paer.agileproject.R;
 
@@ -21,7 +18,7 @@ public class PokerFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.poker_layout, container, false);
+        View view = inflater.inflate(R.layout.fragment_poker, container, false);
         final TextView textView3 = (TextView) view.findViewById(R.id.textView3);
         hideSoftKeyboard();
         spinner = (Spinner) view.findViewById(R.id.numberSpinner);

@@ -13,9 +13,9 @@ import com.example.paer.agileproject.FragmentNavigationDrawer;
 import com.example.paer.agileproject.NoteList_Fragment;
 import com.example.paer.agileproject.R;
 import com.example.paer.agileproject.fragments.AddNoteFragment;
+import com.example.paer.agileproject.fragments.GithubFragment;
 import com.example.paer.agileproject.fragments.PivotalTrackerFragment;
 import com.example.paer.agileproject.fragments.PokerFragment;
-import com.example.paer.agileproject.fragments.SetupFragment;
 
 /**
  * @author Marc
@@ -40,11 +40,11 @@ public class MainActivity extends ActionBarActivity {
                 R.layout.menu_item, R.id.flContent);
 
         // TODO: Here you add new navigation items
-        dlDrawer.addNavItem("Pivotal tracker", "Pivotal tracker", PivotalTrackerFragment.class);
         dlDrawer.addNavItem("Poker planning game", "Poker planning game", PokerFragment.class);
         dlDrawer.addNavItem("Add notes", "Add notes", AddNoteFragment.class);
         dlDrawer.addNavItem("View notes", "View notes", NoteList_Fragment.class);
-	dlDrawer.addNavItem("Github", "Github", SetupFragment.class);
+        dlDrawer.addNavItem("Pivotal tracker", "Pivotal tracker", PivotalTrackerFragment.class);
+        dlDrawer.addNavItem("Github", "Github", GithubFragment.class);
         // Select default
         if (savedInstanceState == null) {
             dlDrawer.selectDrawerItem(0);

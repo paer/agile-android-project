@@ -1,34 +1,29 @@
-package com.example.paer.agileproject.fragments;
+package com.example.paer.agileproject.activities;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.*;
 import com.example.paer.agileproject.R;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import com.example.paer.agileproject.implementations.GithubAuthenticateAsyncTask;
 import com.example.paer.agileproject.implementations.GithubBranchAsyncTask;
 import com.example.paer.agileproject.implementations.GithubProjectAsyncTask;
 
-import database.DataBaseHandler;
 import org.eclipse.egit.github.core.client.GitHubClient;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Sets up the initial information required by the application
  * @author alex
  * @since 2015-03-05
  */
-public class SetupFragment extends Fragment {
+public class SetupActivity extends Activity {
 
     /** The last successfully authenticated username */
     private String mUsername = null;
@@ -42,18 +37,26 @@ public class SetupFragment extends Fragment {
     private GitHubClient githubClient;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_setup_github, container, false);
 
-        final EditText usernameField = (EditText) view.findViewById(R.id.setup_github_username_textfield);
-        final EditText passwordField = (EditText) view.findViewById(R.id.setup_github_password_textfield);
-        final Button authenticate = (Button) view.findViewById(R.id.setup_github_authenticate_button);
-        final Spinner projectSpinner = (Spinner) view.findViewById(R.id.setup_github_project_spinner);
+        SharedPreferences settings = getSharedPreferences("SetupActivity", Context.MODE_PRIVATE);
+        String user = settings.getString("username", null);
+        if(user != null){
+            Intent intent = new Intent(SetupActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+
+        setContentView(R.layout.fragment_setup_github);
+
+        final EditText usernameField = (EditText) findViewById(R.id.setup_github_username_textfield);
+        final EditText passwordField = (EditText) findViewById(R.id.setup_github_password_textfield);
+        final Button authenticate = (Button) findViewById(R.id.setup_github_authenticate_button);
+        final Spinner projectSpinner = (Spinner) findViewById(R.id.setup_github_project_spinner);
         projectSpinner.setEnabled(false);
-        final Spinner branchSpinner = (Spinner) view.findViewById(R.id.setup_github_branch_spinner);
+        final Spinner branchSpinner = (Spinner) findViewById(R.id.setup_github_branch_spinner);
         branchSpinner.setEnabled(false);
-        final Button finish = (Button) view.findViewById(R.id.setup_github_finish_button);
+        final Button finish = (Button) findViewById(R.id.setup_github_finish_button);
         finish.setEnabled(false);
 
         // Set what happens when the authentication button was pressed
@@ -63,13 +66,13 @@ public class SetupFragment extends Fragment {
                 final String usernameFinal = usernameField.getText().toString();
                 final String passwordFinal = passwordField.getText().toString();
 
-                new GithubAuthenticateAsyncTask(SetupFragment.this.getActivity()) {
+                new GithubAuthenticateAsyncTask(SetupActivity.this) {
                     @Override
                     public void onSuccessfulAuthentication(GitHubClient client) {
                         mUsername = usernameFinal;
                         mPassword = passwordFinal;
                         githubClient = client;
-                        new GithubProjectAsyncTask(SetupFragment.this.getActivity()){
+                        new GithubProjectAsyncTask(SetupActivity.this){
                             @Override
                             protected void onPostExecute(ArrayList<String> strings) {
                                 super.onPostExecute(strings);
@@ -94,7 +97,7 @@ public class SetupFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
                 mProject = item;
-                new GithubBranchAsyncTask(SetupFragment.this.getActivity(), githubClient) {
+                new GithubBranchAsyncTask(SetupActivity.this, githubClient) {
                     @Override
                     protected void onPostExecute(ArrayList<String> strings) {
                         super.onPostExecute(strings);
@@ -133,7 +136,7 @@ public class SetupFragment extends Fragment {
                 // If all items selected
                 if(mUsername != null && mPassword != null && mProject != null && mBranch != null){
                     // Store information
-                    SharedPreferences settings = getActivity().getSharedPreferences("SetupFragment", Context.MODE_PRIVATE);
+                    SharedPreferences settings = SetupActivity.this.getSharedPreferences("SetupActivity", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = settings.edit();
                     editor.putString("username", mUsername);
                     editor.putString("password", mPassword);
@@ -141,16 +144,11 @@ public class SetupFragment extends Fragment {
                     editor.putString("branch", mBranch);
                     editor.apply();
 
-                    GithubFragment newFragment = new GithubFragment();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.flContent, newFragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
+                    Intent intent = new Intent(SetupActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
             }
         });
-
-        return view;
     }
 
     @Override

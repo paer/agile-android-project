@@ -32,7 +32,9 @@
             android:layout_gravity="start"
             android:choiceMode="singleChoice"
             android:paddingTop="24dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:divider="@android:color/darker_gray"
             android:dividerHeight="0dp"
-            android:background="@android:color/background_light" />
+            android:background="#cc000000" />
 </com.example.paer.agileproject.FragmentNavigationDrawer>
