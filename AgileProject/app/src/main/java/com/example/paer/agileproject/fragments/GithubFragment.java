@@ -45,7 +45,7 @@ public class GithubFragment extends Fragment {
 
         // How to get the values set by config
         // The "Not found" is a default value if they are not set
-        SharedPreferences settings = getActivity().getSharedPreferences("SetupFragment", Context.MODE_PRIVATE);
+        SharedPreferences settings = getActivity().getSharedPreferences("SetupActivity", Context.MODE_PRIVATE);
         Log.e("username", settings.getString("username", "Not found"));
         Log.e("password", settings.getString("password", "Not found"));
         Log.e("project", settings.getString("project", "Not found"));

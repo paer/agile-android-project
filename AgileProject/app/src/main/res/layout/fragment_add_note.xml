@@ -1,26 +1,40 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+              android:orientation="vertical"
     tools:context="com.example.paer.agileproject.fragments.AddNoteFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginTop="10dp"
+            android:textSize="32sp"
+            android:layout_gravity="center_horizontal"
+
+            android:text="Add notes" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:inputType="textMultiLine"
+        android:hint="Enter text and press Add Note"
         android:ems="10"
         android:id="@+id/editText"
-        android:gravity="top|left"
-        android:layout_gravity="left|top" />
+        android:gravity="top|start"
+        android:layout_gravity="start|top" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Note"
         android:id="@+id/addNoteBtn"
-        android:layout_gravity="left|center_vertical"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentStart="true" />
-</RelativeLayout>
+        android:layout_gravity="start|center_vertical" />
+</LinearLayout>

@@ -13,7 +13,7 @@ import com.example.paer.agileproject.fragments.PivotalTrackerFragment;
 import com.example.paer.agileproject.fragments.PokerFragment;
 import com.example.paer.agileproject.R;
 import com.example.paer.agileproject.FragmentNavigationDrawer;
-import com.example.paer.agileproject.fragments.SetupFragment;
+import com.example.paer.agileproject.activities.SetupActivity;
 
 /**
  * @author Marc

@@ -53,7 +53,7 @@ public class CommitsFragment extends Fragment {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
-        SharedPreferences shared = getActivity().getSharedPreferences("SetupFragment", Context.MODE_PRIVATE);
+        SharedPreferences shared = getActivity().getSharedPreferences("SetupActivity", Context.MODE_PRIVATE);
         GitHubClient client = new GitHubClient();
         client.setUserAgent("agile-android-project");
         client.setCredentials(shared.getString("username", ""), shared.getString("password", ""));
@@ -72,6 +72,7 @@ public class CommitsFragment extends Fragment {
                     for (int i = 0; i < 10; i++) {
                         RepositoryCommit repoCommit = githubProjectInfoBundle.commits.get(i);
                         RelativeLayout commitLayout = (RelativeLayout) getLayoutInflater(savedInstanceState).inflate(R.layout.commit_list_element, commitsList, false);
+                        commitLayout.setPadding(0, 20, 0, 0);
                         TextView commitMessage = (TextView) commitLayout.findViewById(R.id.commit_list_element_message);
                         TextView commitName = (TextView) commitLayout.findViewById(R.id.commit_list_element_name);
                         TextView commitTime = (TextView) commitLayout.findViewById(R.id.commit_list_element_time);
