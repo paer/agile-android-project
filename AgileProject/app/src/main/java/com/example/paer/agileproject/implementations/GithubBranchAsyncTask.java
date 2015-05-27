@@ -44,7 +44,6 @@ public class GithubBranchAsyncTask extends LoadingAsyncTask<GithubProject, Void,
         String projectOwner = projects[0].getOwner();
 
         ArrayList<String> branchNames = new ArrayList<>();
-        branchNames.add("Select a branch");
         try {
             RepositoryService repositoryService = new RepositoryService(githubClient);
             List<RepositoryBranch> branches = repositoryService.getBranches(new RepositoryId(projectOwner, projectName));

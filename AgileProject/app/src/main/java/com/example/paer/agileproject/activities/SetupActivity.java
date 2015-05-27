@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
@@ -139,7 +140,8 @@ public class SetupActivity extends Activity {
             @Override
             public void onClick(View buttonView) {
                 // If all items selected
-                if(mUsername != null && mPassword != null && mProject != null && mBranch != null){
+                if(mUsername != null && mPassword != null && mProject != null && mBranch != null && mOwner != null){
+                    Log.e("SetupActivity", "u[" + mUsername + "] p[" + mPassword + "] p[" + mProject + "] b[" + mBranch + "] o[" + mOwner + "]");
                     // Store information
                     SharedPreferences settings = SetupActivity.this.getSharedPreferences("SetupActivity", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = settings.edit();
@@ -152,6 +154,8 @@ public class SetupActivity extends Activity {
 
                     Intent intent = new Intent(SetupActivity.this, MainActivity.class);
                     startActivity(intent);
+                } else {
+                    Log.e("SetupActivity", "u[" + mUsername + "] p[" + mPassword + "] p[" + mProject + "] b[" + mBranch + "] o[" + mOwner + "]");
                 }
             }
         });

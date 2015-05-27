@@ -30,7 +30,6 @@ public class GithubProjectAsyncTask extends LoadingAsyncTask<GitHubClient, Void,
     @Override
     protected ArrayList<GithubProject> doInBackground(GitHubClient... gitHubClients) {
         ArrayList<GithubProject> projectNames = new ArrayList<GithubProject>();
-        projectNames.add(new GithubProject("Select a project", ""));
 
         try {
             RepositoryService service = new RepositoryService(gitHubClients[0]);

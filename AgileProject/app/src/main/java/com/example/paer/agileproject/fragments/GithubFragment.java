@@ -49,6 +49,6 @@ public class GithubFragment extends Fragment {
         Log.e("username", settings.getString("username", "Not found"));
         Log.e("password", settings.getString("password", "Not found"));
         Log.e("project", settings.getString("project", "Not found"));
-        Log.e("branches", settings.getString("branches", "Not found"));
+        Log.e("branch", settings.getString("branch", "Not found"));
     }
 }

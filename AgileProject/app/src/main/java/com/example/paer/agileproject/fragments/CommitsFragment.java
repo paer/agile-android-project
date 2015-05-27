@@ -43,9 +43,9 @@ public class CommitsFragment extends Fragment {
         SharedPreferences shared = getActivity().getSharedPreferences("SetupFragment", Context.MODE_PRIVATE);
         this.username = (shared.getString("username", ""));
         this.password = (shared.getString("password", ""));
-        this.project = (shared.getString("project", ""));
-        this.owner = (shared.getString("owner", ""));
-        this.branch = (shared.getString("branch", ""));
+        this.project = (shared.getString("project", "agile-android-project"));
+        this.branch = (shared.getString("branch", "master"));
+        this.owner = (shared.getString("owner", "paer"));
 
         this.client = new GitHubClient();
         this.client.setUserAgent("agile-android-project");
