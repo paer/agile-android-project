@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 
+import com.example.paer.agileproject.GithubProject;
 import com.example.paer.agileproject.R;
 
 import com.example.paer.agileproject.implementations.GithubAuthenticateAsyncTask;
