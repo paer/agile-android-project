@@ -19,7 +19,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:id="@+id/numberSpinner"
-        android:layout_toRightOf="@+id/textView2" />
+        android:layout_toRightOf="@+id/textView2"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dialog" />
 
     <TextView
         android:layout_width="wrap_content"

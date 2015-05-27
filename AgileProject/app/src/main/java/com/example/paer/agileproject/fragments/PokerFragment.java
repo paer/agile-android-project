@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -22,7 +23,7 @@ public class PokerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.poker_layout, container, false);
         final TextView textView3 = (TextView) view.findViewById(R.id.textView3);
-
+        hideSoftKeyboard();
         spinner = (Spinner) view.findViewById(R.id.numberSpinner);
         adapter = ArrayAdapter.createFromResource(getActivity(), R.array.poker_strings, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -39,5 +40,12 @@ public class PokerFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    public void hideSoftKeyboard() {
+        if(getActivity().getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+        }
     }
 }
