@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.example.paer.agileproject.FragmentNavigationDrawer;
-import com.example.paer.agileproject.NoteList_Fragment;
+import com.example.paer.agileproject.fragments.NoteList_Fragment;
 import com.example.paer.agileproject.R;
 import com.example.paer.agileproject.fragments.AddNoteFragment;
 import com.example.paer.agileproject.fragments.GithubFragment;
